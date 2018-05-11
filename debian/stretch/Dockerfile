@@ -16,11 +16,11 @@ RUN set -e \
 	&& groupadd -r -g 1000 etesync \
 	&& useradd -d /etesync -r -M -s /bin/sh -g 1000 -u 1000 etesync \
 	&& apt-get update \
-	&& apt-get install -y --no-install-recommends build-essential git \
+	&& apt-get install -y --no-install-recommends build-essential git libldap-2.4-2 libsasl2-2 libldap2-dev libsasl2-dev libsasl2-modules-ldap \
 	&& git clone https://github.com/etesync/server-skeleton.git $ETESYNC_PATH \
 	&& rm -rf $ETESYNC_PATH/.git \
-	&& pip install -r $ETESYNC_PATH/requirements.txt uwsgi \
-	&& apt-get remove --purge -y build-essential git \
+	&& pip install -r $ETESYNC_PATH/requirements.txt uwsgi python-ldap django-auth-ldap \
+	&& apt-get remove --purge -y build-essential git libldap2-dev libsasl2-dev \
 	&& apt-get autoremove --purge -y \
 	&& rm -rf /var/lib/apt/lists/*
 

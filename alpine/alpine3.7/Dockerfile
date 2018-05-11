@@ -14,10 +14,11 @@ WORKDIR $ETESYNC_PATH
 
 RUN set -e \
 	&& adduser -h $ETESYNC_PATH -s /bin/sh -D -H -u 1000 etesync \
-	&& apk add --no-cache --virtual .build-deps coreutils gcc make linux-headers libc-dev git \
+	&& apk add --no-cache --virtual libldap \
+	&& apk add --no-cache --virtual .build-deps coreutils gcc make linux-headers libc-dev git openldap-dev \
 	&& git clone https://github.com/etesync/server-skeleton.git $ETESYNC_PATH \
 	&& rm -rf $ETESYNC_PATH/.git \
-	&& pip install -r $ETESYNC_PATH/requirements.txt uwsgi \
+	&& pip install -r $ETESYNC_PATH/requirements.txt uwsgi python-ldap django-auth-ldap \
 	&& apk del .build-deps
 
 COPY settings.py $ETESYNC_PATH/etesync_server/settings.py
