@@ -1,5 +1,5 @@
 #!/bin/bash
-git pull --rebase
+git pull --rebase upstream master
 bash generate.sh
 
 pushd debian/slim
