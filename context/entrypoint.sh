@@ -34,7 +34,7 @@ if [ $SERVER = 'https' ] && { [ ! -f "$X509_CRT" ] || [ ! -f "$X509_KEY" ]; }; t
    	openssl req -x509 -nodes -newkey rsa:2048 -keyout $X509_KEY -out $X509_CRT -days 365 -subj '/CN=localhost'
 fi
 
-uWSGI='/usr/local/bin/uwsgi --ini etesync.ini'
+uWSGI='exec /usr/local/bin/uwsgi --ini etesync.ini'
 
 echo 'Starting ETESync'
 
