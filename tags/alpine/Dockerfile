@@ -36,7 +36,7 @@ RUN set -e && \
     mv $BASE_DIR/static $STATIC_DIR/ && \
     ln -s $STATIC_DIR/static $BASE_DIR/static && \
     rm $BASE_DIR/master.tar.gz $BASE_DIR/requirements.txt $SECRET_FILE && \
-    rm -r /tmp/server-skeleton-master
+    rm -r /tmp/server-master
 
 COPY context /
 
